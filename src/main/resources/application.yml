@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: webflux-java-csp-example
+app:
+  crypto:
+    type: PFXStore
+    path: ${pfx_path:""}
+    alias: ${pfx_alias:""}
+    password: ${pfx_password:""}
+  payload:
+    attributes:
+      2.5.4.3: TestCN
+
+# Glossary:
+# Oid - 2.5.4.3: CN (Common Name) - User Surname Name Patronymic (RU)
