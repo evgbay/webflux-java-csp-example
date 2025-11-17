@@ -1,0 +1,40 @@
+# Gradle / Maven
+.gradle/
+build/
+target/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# Git
+.git/
+.gitignore
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Node / frontend (если есть)
+node_modules/
+dist/
+
+# Coverage / test reports
+coverage/
+test-results/

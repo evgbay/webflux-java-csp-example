@@ -9,7 +9,17 @@ app:
     password: ${pfx_password:""}
   payload:
     attributes:
-      2.5.4.3: TestCN
-
+      2.5.4.3: DummyCN
+      2.5.4.6: RU
+      2.5.4.7: Moscow
+      2.5.4.8: MSK
+      2.5.4.9: Lenina, 1
+      1.2.840.113549.1.9.1: test@test.ru
 # Glossary:
-# Oid - 2.5.4.3: CN (Common Name) - User Surname Name Patronymic (RU)
+# Oid => 2.5.4.3
+# 2.5.4.3: CN (Common Name) - Surname Name Patronymic (RU)
+# 2.5.4.6: Country
+# 2.5.4.7: City
+# 2.5.4.8: State Or Province
+# 2.5.4.9: Street
+# 1.2.840.113549.1.9.1: Email

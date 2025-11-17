@@ -1,0 +1,35 @@
+package ru.bay.example.util;
+
+import org.junit.jupiter.api.Test;
+import ru.bay.example.data.Give;
+import ru.bay.example.data.ProfileAttributesChange;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static ru.bay.example.data.Constants.*;
+
+class XmlEncoderTest {
+    @Test
+    void shouldReturnValidProfileAttributesChangeWithOneAttribute() {
+        var pac = Give.pac()
+                .withAttribute(CN_OID, ALIAS)
+                .build();
+
+        byte[] bytes = XmlEncoder.pacToBytes(pac);
+
+        assertThat(new String(bytes)).isEqualTo(ProfileAttributesChange.CN);
+    }
+
+    @Test
+    void shouldReturnValidProfileAttributesChangeWithSeveralAttribute() {
+        var pac = Give.pac()
+                .withAttribute(CN_OID, ALIAS)
+                .withAttribute(COUNTRY_OID, COUNTRY)
+                .withAttribute(CITY_OID, CITY)
+                .withAttribute(EMAIL_OID, EMAIL)
+                .build();
+
+        byte[] bytes = XmlEncoder.pacToBytes(pac);
+
+        assertThat(new String(bytes)).isEqualTo(ProfileAttributesChange.SEVERAL_VALUES);
+    }
+}
