@@ -38,5 +38,10 @@ out/
 
 ### WARNING ###
 libs/*
-!libs/.gitkeepq
+*.cer
 *.pfx
+.env
+*.env
+/src/main/resources/config/garbage/
+/entrypoint
+/Dockerfile

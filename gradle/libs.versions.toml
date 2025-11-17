@@ -1,9 +1,8 @@
 [versions]
+app-version = "1.0.0"
 boot = "3.5.7"
 dm = "1.1.7"
 jackson-xml = "3.0.1"
-blockhound = "1.0.15.RELEASE"
 
 [libraries]
 jackson-dataformat-xml = { module = "tools.jackson.dataformat:jackson-dataformat-xml", version.ref = "jackson-xml" }
-blockhound = { module = "io.projectreactor.tools:blockhound", version.ref = "blockhound" }
