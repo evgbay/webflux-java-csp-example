@@ -20,14 +20,14 @@ public class CryptoController {
     @GetMapping("/v1/sign")
     public Mono<String> privilegeSignature() {
         return payload.defaultPayload()
-                .flatMap(cryptoSignService::signV1)
+                .flatMap(cryptoSignService::privilegeSignature)
                 .subscribeOn(Schedulers.boundedElastic());
     }
 
     @GetMapping("/v2/sign")
     public Mono<String> doubleSignature() {
         return payload.defaultPayload()
-                .flatMap(cryptoSignService::signV2)
+                .flatMap(cryptoSignService::doubleSignature)
                 .subscribeOn(Schedulers.boundedElastic());
     }
 }

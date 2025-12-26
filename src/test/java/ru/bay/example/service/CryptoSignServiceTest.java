@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static ru.bay.example.data.Constants.EXPECTED_ENCODED_PHRASE;
 import static ru.bay.example.data.Constants.PHRASE;
 
 
@@ -33,13 +34,32 @@ class CryptoSignServiceTest {
     private CryptoSignService service;
 
     @Test
+    void shouldReturnCorrectedEncodedStringAfterPrivilegeSignature() throws CAdESException {
+        var credentials = Give.credentials()
+                .gost()
+                .build();
+        when(credentialProvider.assembleCredentials())
+                .thenReturn(Mono.just(credentials));
+        when(cadesSignatureProvider.newInstance(any(Credentials.class), any(AttributePolicy.class)))
+                .thenReturn(Mono.just(new CAdESSignature()));
+        when(cadesSignatureProvider.applySignature(any(), any(CAdESSignature.class)))
+                .thenReturn(Mono.just(PHRASE.getBytes()));
+
+        Mono<String> mono = service.privilegeSignature(PHRASE.getBytes());
+
+        StepVerifier.create(mono)
+                .expectNext(EXPECTED_ENCODED_PHRASE)
+                .verifyComplete();
+    }
+
+    @Test
     void shouldReturnExceptionMessageWhenKeyStoreValidationEndWithException() {
         var exceptionMessage = "Something went wrong";
 
         when(credentialProvider.assembleCredentials())
                 .thenReturn(Mono.error(new RuntimeException(exceptionMessage)));
 
-        Mono<String> mono = service.signV2(PHRASE.getBytes());
+        Mono<String> mono = service.doubleSignature(PHRASE.getBytes());
 
         StepVerifier.create(mono)
                 .expectNext(exceptionMessage)
@@ -48,9 +68,9 @@ class CryptoSignServiceTest {
 
     @Test
     void shouldReturnSignedBytesAfterSignOne() throws CAdESException {
-        var pair = Give.keyPair().gost();
-        var certificate = Give.certificate().dummy();
-        var credentials = new Credentials(pair.getPrivate(), certificate);
+        var credentials = Give.credentials()
+                .gost()
+                .build();
 
         when(cadesSignatureProvider.newInstance(any(Credentials.class), any(AttributePolicy.class)))
                 .thenReturn(Mono.just(new CAdESSignature()));
@@ -70,9 +90,9 @@ class CryptoSignServiceTest {
 
     @Test
     void shouldReturnSignedBytesAfterSignOneWithAttribute() throws CAdESException {
-        var pair = Give.keyPair().gost();
-        var certificate = Give.certificate().dummy();
-        var credentials = new Credentials(pair.getPrivate(), certificate);
+        var credentials = Give.credentials()
+                .gost()
+                .build();
 
         when(cadesSignatureProvider.newInstance(any(Credentials.class), any(AttributePolicy.class)))
                 .thenReturn(Mono.just(new CAdESSignature()));
@@ -92,9 +112,9 @@ class CryptoSignServiceTest {
 
     @Test
     void shouldReturnSignedBytesAfterDoubleSign() throws CAdESException {
-        var pair = Give.keyPair().gost();
-        var certificate = Give.certificate().dummy();
-        var credentials = new Credentials(pair.getPrivate(), certificate);
+        var credentials = Give.credentials()
+                .gost()
+                .build();
 
         when(cadesSignatureProvider.newInstance(any(Credentials.class), any(AttributePolicy.class)))
                 .thenReturn(Mono.just(new CAdESSignature()));

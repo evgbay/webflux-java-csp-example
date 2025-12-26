@@ -5,7 +5,6 @@ target/
 
 # IDE
 .idea/
-*.iml
 *.ipr
 *.iws
 .vscode/
@@ -37,4 +36,3 @@ dist/
 
 # Coverage / test reports
 coverage/
-test-results/

@@ -1,5 +1,7 @@
 package ru.bay.example.data;
 
+import java.util.Map;
+
 public interface Constants {
     String CN_OID = "2.5.4.3";
     String COUNTRY_OID = "2.5.4.6";
@@ -14,4 +16,5 @@ public interface Constants {
     String PHRASE = "Hello World";
     String EXPECTED_ENCODED_PHRASE = "SGVsbG8gV29ybGQ=";
     String ERR_KEY_PAIR_MESSAGE = "An exception occurred while forming a %s key pair";
+    Map<String, String> TEST_ATTRIBUTES = Map.of(CN_OID, ALIAS);
 }

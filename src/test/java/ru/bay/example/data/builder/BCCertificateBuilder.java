@@ -16,8 +16,8 @@ import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import ru.bay.example.data.Give;
-import ru.bay.example.data.builder.exception.CertificateCreationException;
-import ru.bay.example.data.builder.exception.CertificateCreationStep;
+import ru.bay.example.data.exception.CertificateCreationException;
+import ru.bay.example.data.exception.CertificateCreationStep;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

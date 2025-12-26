@@ -2,7 +2,7 @@ package ru.bay.example.util;
 
 import org.junit.jupiter.api.Test;
 import ru.bay.example.data.Give;
-import ru.bay.example.data.ProfileAttributesChange;
+import ru.bay.example.data.PlainProfileAttributesChange;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.bay.example.data.Constants.*;
@@ -16,7 +16,7 @@ class XmlEncoderTest {
 
         byte[] bytes = XmlEncoder.pacToBytes(pac);
 
-        assertThat(new String(bytes)).isEqualTo(ProfileAttributesChange.CN);
+        assertThat(new String(bytes)).isEqualTo(PlainProfileAttributesChange.CN);
     }
 
     @Test
@@ -30,6 +30,6 @@ class XmlEncoderTest {
 
         byte[] bytes = XmlEncoder.pacToBytes(pac);
 
-        assertThat(new String(bytes)).isEqualTo(ProfileAttributesChange.SEVERAL_VALUES);
+        assertThat(new String(bytes)).isEqualTo(PlainProfileAttributesChange.SEVERAL_VALUES);
     }
 }

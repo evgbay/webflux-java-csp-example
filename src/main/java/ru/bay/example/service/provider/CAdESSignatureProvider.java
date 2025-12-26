@@ -8,7 +8,6 @@ import reactor.core.publisher.Mono;
 import ru.CryptoPro.AdES.Options;
 import ru.CryptoPro.CAdES.CAdESSignature;
 import ru.CryptoPro.CAdES.CAdESType;
-import ru.CryptoPro.JCP.tools.Encoder;
 import ru.CryptoPro.JCSP.JCSP;
 import ru.bay.example.model.Credentials;
 
@@ -33,10 +32,6 @@ public class CAdESSignatureProvider {
                 return outputStream.toByteArray();
             }
         });
-    }
-
-    public Mono<String> encode(byte[] data) {
-        return Mono.fromCallable(() -> new Encoder().encode(data));
     }
 
     @SuppressWarnings("java:S3252")
