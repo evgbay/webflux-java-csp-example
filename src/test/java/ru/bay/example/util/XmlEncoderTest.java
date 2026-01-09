@@ -14,7 +14,7 @@ class XmlEncoderTest {
                 .withAttribute(CN_OID, ALIAS)
                 .build();
 
-        byte[] bytes = XmlEncoder.pacToBytes(pac);
+        byte[] bytes = XmlEncoder.toBytes(pac);
 
         assertThat(new String(bytes)).isEqualTo(PlainProfileAttributesChange.CN);
     }
@@ -28,7 +28,7 @@ class XmlEncoderTest {
                 .withAttribute(EMAIL_OID, EMAIL)
                 .build();
 
-        byte[] bytes = XmlEncoder.pacToBytes(pac);
+        byte[] bytes = XmlEncoder.toBytes(pac);
 
         assertThat(new String(bytes)).isEqualTo(PlainProfileAttributesChange.SEVERAL_VALUES);
     }
