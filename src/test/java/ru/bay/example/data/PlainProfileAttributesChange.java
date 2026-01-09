@@ -2,7 +2,7 @@ package ru.bay.example.data;
 
 import static ru.bay.example.data.Constants.*;
 
-public interface ProfileAttributesChange {
+public interface PlainProfileAttributesChange {
     String CN =
             String.format("<ProfileAttributesChange><To><Attribute Oid=\"%s\" Value=\"%s\"/></To></ProfileAttributesChange>",
                     CN_OID, ALIAS);

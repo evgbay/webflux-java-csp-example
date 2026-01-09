@@ -30,10 +30,8 @@ public record ProfileAttributesChange(
     }
 
     public static ProfileAttributesChange from(Map<String, String> rawAttributes) {
-        var attributes = new ArrayList<Attribute>();
-        for (var entry : rawAttributes.entrySet()) {
-            attributes.add(new Attribute(entry.getKey(), entry.getValue()));
-        }
+        final var attributes = new ArrayList<Attribute>();
+        rawAttributes.forEach((key, value) -> attributes.add(new Attribute(key, value)));
         return new ProfileAttributesChange(new To(attributes));
     }
 }

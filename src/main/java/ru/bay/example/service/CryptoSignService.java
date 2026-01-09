@@ -8,6 +8,7 @@ import ru.bay.example.model.Credentials;
 import ru.bay.example.service.provider.AttributePolicy;
 import ru.bay.example.service.provider.CAdESSignatureProvider;
 import ru.bay.example.service.provider.CredentialProvider;
+import ru.bay.example.util.CryptoEncoder;
 
 import static ru.bay.example.service.provider.AttributePolicy.APPROVAL;
 import static ru.bay.example.service.provider.AttributePolicy.NONE;
@@ -22,17 +23,17 @@ public class CryptoSignService {
     private final CredentialProvider credentialProvider;
     private final CAdESSignatureProvider cadesSignatureProvider;
 
-    public Mono<String> signV1(byte[] data) {
+    public Mono<String> privilegeSignature(byte[] data) {
         return credentialProvider.assembleCredentials()
                 .flatMap(credentials -> signOnce(data, credentials, APPROVAL))
-                .flatMap(cadesSignatureProvider::encode)
+                .flatMap(CryptoEncoder::encode)
                 .onErrorResume(this::handleException);
     }
 
-    public Mono<String> signV2(byte[] data) {
+    public Mono<String> doubleSignature(byte[] data) {
         return credentialProvider.assembleCredentials()
                 .flatMap(credentials -> doubleSign(data, credentials, NONE))
-                .flatMap(cadesSignatureProvider::encode)
+                .flatMap(CryptoEncoder::encode)
                 .onErrorResume(this::handleException);
     }
 

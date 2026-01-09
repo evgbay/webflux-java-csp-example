@@ -34,6 +34,10 @@ public class Give {
         return new CertificateBuilder();
     }
 
+    public static CredentialBuilder credentials() {
+        return new CredentialBuilder();
+    }
+
     public static ProfileAttributesChangeBuilder pac() {
         return new ProfileAttributesChangeBuilder();
     }

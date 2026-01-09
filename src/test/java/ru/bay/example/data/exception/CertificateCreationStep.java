@@ -1,4 +1,4 @@
-package ru.bay.example.data.builder.exception;
+package ru.bay.example.data.exception;
 
 public enum CertificateCreationStep {
     GET_SUBJECT_PK_INFO,

@@ -13,6 +13,6 @@ public final class Payload {
 
     public Mono<byte[]> defaultPayload() {
         var profileAttributesChange = ProfileAttributesChange.from(payloadProperties.attributes());
-        return Mono.fromCallable(() -> XmlEncoder.pacToBytes(profileAttributesChange));
+        return Mono.fromCallable(() -> XmlEncoder.toBytes(profileAttributesChange));
     }
 }
